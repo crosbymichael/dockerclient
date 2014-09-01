@@ -228,3 +228,8 @@ func (client *DockerClient) ListImages() ([]*Image, error) {
 
 	return images, nil
 }
+
+func (client *DockerClient) Ping() bool {
+	_, err := client.doRequest("GET", "/v1.10/_ping", nil)
+	return err == nil
+}
